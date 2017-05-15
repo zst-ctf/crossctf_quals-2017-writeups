@@ -1,0 +1,42 @@
+$auth = false;
+
+function String2Hex($string){
+	$hex='';
+	for ($i=0; $i < strlen($string); $i++){
+		$hex .= dechex(ord($string[$i]));
+	}
+	return $hex;
+}
+
+function Hex2String($hex){
+	$string='';
+	for ($i=0; $i < strlen($hex)-1; $i+=2){
+		$string .= chr(hexdec($hex[$i].$hex[$i+1]));
+	}
+	return $string;
+}
+
+if (!isset($_COOKIE['session']) or !isset($_COOKIE['session_hash'])){
+	setcookie('session', String2Hex($cookie_content));
+	setcookie('session_hash', hash("sha256", $SECRET.$cookie_content));
+} else {
+	$temp = Hex2String($_COOKIE['session']);
+	$cookie_hash = $_COOKIE['session_hash'];
+	if (hash("sha256", $SECRET.$temp) === $cookie_hash){
+		$info = explode("|", $temp);
+		$admin = substr(end($info), 6);
+		if ($admin === '1'){
+			$auth = true;
+		}
+	} else {
+		echo 'Hash does not match!';
+	}
+}
+
+if ($auth){
+	echo '<h1>Admin</h1>';
+	// Load admin page here
+} else {
+	echo '<h1>You are not admin!</h1>';
+	// Load non-admin page here
+}
