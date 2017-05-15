@@ -34,7 +34,7 @@ Challenges                                         | Points | Category | Remarks
 [Q3]: complexpassword
 [Q4]: Salted_Hash_Challenge
 [Q5]: Internal_Network_Challenge
-[Q6]: trival.py
+[Q6]: trival_py
 [Q7]: PlebPwn
 
 [Q11]: Go_Deep
