@@ -45,4 +45,6 @@ Challenges                                         | Points | Category | Remarks
 [Failed]: Failed
 
 [XCTF]: http://quals.crossctf.com/scoreboard
+
+
 ---
